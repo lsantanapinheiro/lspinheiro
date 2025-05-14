@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo Pinheiro | Portfólio</title>
+    <style>
+        /* Estilos baseados em Matrix (verde/neon) e Berserk (tons escuros/detalhes góticos) */
+        :root {
+            --matrix-green: #00ff41;
+            --berserk-red: #8b0000;
+            --dark-bg: #121212;
+            --darker-bg: #0a0a0a;
+            --text-color: #e0e0e0;
+            --accent-color: var(--matrix-green);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+        
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+            background-size: 20px 20px;
+            position: relative;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, transparent 0%, var(--dark-bg) 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        /* Efeito de chuva de código (Matrix) */
+        .matrix-rain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Estilo da marca de sacrifício (Berserk) */
+        .brand {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.3;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="%2300ff41" stroke-width="2" d="M50,10 L90,50 L50,90 L10,50 Z M30,50 L70,50 M50,30 L50,70"/></svg>');
+            background-size: contain;
+            z-index: -1;
+            animation: pulse 8s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.1; }
+        }
+        
+        header {
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+            text-shadow: 0 0 5px var(--accent-color);
+            letter-spacing: 3px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--accent-color);
+            color: var(--dark-bg);
+            box-shadow: 0 0 10px var(--accent-color);
+        }
+        
+        section {
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            margin-bottom: 3rem;
+            background-color: rgba(10, 10, 10, 0.7);
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 255, 65, 0.05) 0%, transparent 50%, rgba(139, 0, 0, 0.05) 100%);
+            pointer-events: none;
+        }
+        
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.3);
+            padding-bottom: 0.5rem;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .skill-category {
+            background-color: rgba(20, 20, 20, 0.8);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        
+        .skill-category ul {
+            list-style-type: none;
+        }
+        
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .skill-category li::before {
+            content: ">";
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .project-card {
+            background-color: rgba(20, 20, 20, 0.8);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 65, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 255, 65, 0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .project-image {
+            height: 200px;
+            background-color: var(--darker-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 3rem;
+            border-bottom: 1px solid rgba(0, 255, 65, 0.2);
+        }
+        
+        .project-info {
+            padding: 1.5rem;
+        }
+        
+        .project-info h3 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-info p {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        .project-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-right: 1rem;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        
+        .project-links a:hover {
+            text-decoration: underline;
+        }
+        
+        .project-links a::before {
+            content: "[";
+            margin-right: 2px;
+        }
+        
+        .project-links a::after {
+            content: "]";
+            margin-left: 2px;
+        }
+        
+        .contact-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: rgba(20, 20, 20, 0.8);
+            padding: 1.5rem;
+            border-radius: 6px;
+            border-left: 3px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+        
+        .contact-info h3 {
+            color: var(--accent-color);
+            margin-bottom: 0.3rem;
+        }
+        
+        .contact-info a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+        
+        .contact-info a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(0, 255, 65, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 1.5rem;
+            }
+            
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Efeitos especiais */
+        .glitch {
+            position: relative;
+        }
+        
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        
+        .glitch::before {
+            color: #0ff;
+            z-index: -1;
+            animation: glitch-effect 3s infinite;
+        }
+        
+        .glitch::after {
+            color: #f0f;
+            z-index: -2;
+            animation: glitch-effect 2s infinite reverse;
+        }
+        
+        @keyframes glitch-effect {
+            0% { transform: translate(0); }
+            20% { transform: translate(-3px, 3px); }
+            40% { transform: translate(-3px, -3px); }
+            60% { transform: translate(3px, 3px); }
+            80% { transform: translate(3px, -3px); }
+            100% { transform: translate(0); }
+        }
+        
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2rem;
+            background-color: var(--accent-color);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--accent-color);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 2px;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Efeito de chuva de código Matrix -->
+    <canvas id="matrix-rain" class="matrix-rain"></canvas>
+    
+    <!-- Marca de sacrifício (Berserk) -->
+    <div class="brand"></div>
+    
+    <header>
+        <h1 class="glitch" data-text="LEONARDO PINHEIRO">LEONARDO PINHEIRO</h1>
+        <p class="subtitle">DESENVOLVEDOR | ADMINISTRADOR | ANALISTA DE REDES</p>
+        
+        <nav>
+            <a href="#about">SOBRE</a>
+            <a href="#skills">HABILIDADES</a>
+            <a href="#projects">PROJETOS</a>
+            <a href="#contact">CONTATO</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="about">
+            <h2>SOBRE MIM<span class="cursor"></span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Olá, eu sou Leonardo Pinheiro, um profissional multifacetado com formação em Ciência da Computação e experiência em administração e análise de redes.</p>
+                    <p>Minha jornada no mundo da tecnologia combina a precisão lógica da programação com a visão estratégica da administração, criando soluções que são tanto tecnicamente robustas quanto comercialmente viáveis.</p>
+                    <p>Inspirado pela resiliência de Guts (Berserk) e pela percepção da realidade de Neo (Matrix), busco constantemente desafiar meus limites e evoluir tanto profissional quanto pessoalmente.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills">
+            <h2>HABILIDADES & COMPETÊNCIAS<span class="cursor"></span></h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Linguagens de Programação</h3>
+                    <ul>
+                        <li>C# (.NET Core/Framework)</li>
+                        <li>Python (Django, Flask)</li>
+                        <li>Java (Spring Boot)</li>
+                        <li>JavaScript/TypeScript</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Desenvolvimento Web</h3>
+                    <ul>
+                        <li>HTML5, CSS3, JavaScript</li>
+                        <li>React, Angular</li>
+                        <li>Node.js, Express</li>
+                        <li>APIs RESTful</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Administração & Redes</h3>
+                    <ul>
+                        <li>Administração de Sistemas</li>
+                        <li>Análise e Configuração de Redes</li>
+                        <li>Segurança da Informação</li>
+                        <li>Cloud Computing (AWS, Azure)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Outras Competências</h3>
+                    <ul>
+                        <li>Banco de Dados (SQL, NoSQL)</li>
+                        <li>DevOps (Docker, CI/CD)</li>
+                        <li>Gestão de Projetos</li>
+                        <li>Análise de Dados</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects">
+            <h2>PROJETOS RECENTES<span class="cursor"></span></h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        [Projeto 1]
+                    </div>
+                    <div class="project-info">
+                        <h3>Sistema de Gestão</h3>
+                        <p>Sistema completo desenvolvido em C# para gestão empresarial com módulos integrados.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Demo</a>
+                            <a href="#" target="_blank">Código</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        [Projeto 2]
+                    </div>
+                    <div class="project-info">
+                        <h3>Análise de Redes</h3>
+                        <p>Ferramenta Python para monitoramento e análise de desempenho de redes corporativas.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Demo</a>
+                            <a href="#" target="_blank">Código</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        [Projeto 3]
+                    </div>
+                    <div class="project-info">
+                        <h3>Portal Web</h3>
+                        <p>Portal desenvolvido com React e Node.js para apresentação de serviços tecnológicos.</p>
+                        <div class="project-links">
+                            <a href="#" target="_blank">Demo</a>
+                            <a href="#" target="_blank">Código</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="contact">
+            <h2>ENTRE EM CONTATO<span class="cursor"></span></h2>
+            <p>Estou sempre aberto a novas oportunidades, colaborações ou simplesmente para bater um papo sobre tecnologia, Berserk ou Matrix.</p>
+            
+            <div class="contact-methods">
+                <div class="contact-card">
+                    <div class="contact-icon">@</div>
+                    <div class="contact-info">
+                        <h3>Instagram</h3>
+                        <a href="https://www.instagram.com/leopinheiro" target="_blank">@leopinheiro</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">#</div>
+                    <div class="contact-info">
+                        <h3>GitHub</h3>
+                        <a href="https://github.com/lsantanapinheiro" target="_blank">lsantanapinheiro</a>
+                    </div>
+                </div>
+                
+                <div class="contact-card">
+                    <div class="contact-icon">✆</div>
+                    <div class="contact-info">
+                        <h3>Telefone</h3>
+                        <a href="tel:+5591984950191">(91) 98495-0191</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>"Eu escolho a realidade que eu quero." <span style="color: var(--accent-color);">- Neo (Matrix)</span></p>
+        <p>"A força não vem da capacidade física. Vem de uma vontade indomável." <span style="color: var(--berserk-red);">- Guts (Berserk)</span></p>
+        <p>&copy; 2023 Leonardo Pinheiro. Todos os direitos reservados.</p>
+    </footer>
+    
+    <script>
+        // Efeito de chuva de código Matrix
+        const canvas = document.getElementById('matrix-rain');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        
+        const alphabet = katakana + latin + nums;
+        
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        
+        const rainDrops = [];
+        
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+        
+        const draw = () => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+        
+        setInterval(draw, 30);
+        
+        // Efeito de digitação para seções
+        const sections = document.querySelectorAll('section');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        sections.forEach(section => {
+            section.style.opacity = 0;
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(section);
+        });
+        
+        // Efeito de cursor piscando
+        const cursors = document.querySelectorAll('.cursor');
+        
+        setInterval(() => {
+            cursors.forEach(cursor => {
+                cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+            });
+        }, 500);
+    </script>
+</body>
+</html>
